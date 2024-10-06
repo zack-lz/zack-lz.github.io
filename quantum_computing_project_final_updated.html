@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Computing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            color: #000000;  /* Set text color to black for contrast */
+            background-color: #ffd9e6;  /* Light pink background */
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 40px;
+        }
+        
+        h2 {
+            margin-top: 20px;
+            font-size: 30px;
+            font-style: italic;
+        }
+        button{
+            border-style: solid; 
+            border-width: 0;
+            background-color: #D3D3D3;
+            font-size:30px;
+
+        }
+        h4 {
+            
+          
+            font-size:20px;
+            color: red;
+            background-color: #D3D3D3;  /* Light pink background */
+           
+            
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #00aaaa; /* Cyan for links */
+        }
+        .page {
+            display: none; /* Initially hide all pages */
+        }
+        .active {
+            display: block; /* Display only the active page */
+        }
+        #videoPage {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 原始页面内容 -->
+<section id="mainPage" class="page active">
+    <h1>The History and Future of Quantum Computing<br><br>ZACK</h1><br><br>
+    <p><h2>Introduction</h2>Quantum computing is a type of computational device that operates based on the fundamental principles of quantum mechanics. Its emergence has the potential to disrupt our current understanding of computing power. Unlike classical computers, quantum computers use quantum bits (qubits) to perform calculations. These qubits can exist in multiple states simultaneously (superposition), allowing for parallel computations. As technology advances, quantum computing has evolved from theoretical concepts to practical reality, becoming a leading research frontier in computation and bringing limitless application potential. This report will explore the history, core principles, and prospects of quantum computing.</p>
+    <br>
+    <h2><a href="https://quantumpedia.uk/a-brief-history-of-quantum-computing-e0bbd05893d0">I. The History of Quantum Computing</a></h2>
+    
+    <p>1. Early Theories<br>The history of quantum computing can be traced back to the early 20th century with the development of quantum mechanics. Physicists like Max Planck and Albert Einstein introduced the quantum theory explaining the behaviour of particles and their interactions at the subatomic level. These theories laid the foundation for the later development of quantum computing.</p>
+    <p>2. Richard Feynman and the Proposal of Quantum Computing
+       <br> <img src="https://pm1.narvii.com/6558/6a9eec9ff69e799e011f935420b4567e7543700c_hq.jpg" alt="示例图片" width="235" height="310">
+        <br>Richard Feynman formally proposed the concept of quantum computing. In 1981 during a lecture, Feynman pointed out that classical computers are highly inefficient when simulating quantum systems. Thus, he suggested designing computers based on quantum mechanics to handle such complex computational tasks. Feynman's idea became the starting point for quantum computing research.</p>
+    <p>3. Peter Shor and Quantum Algorithms<br>In 1994, mathematician Peter Shor introduced a quantum algorithm known as "Shor's algorithm." This algorithm allows quantum computers to greatly accelerate the process of integer factorization, the basis of modern encryption systems. The proposal of Shor's algorithm marked the first step in taking quantum computing from theory to practical application.</p>
+    <br>
+    <h2><a href="https://www.ibm.com/topics/quantum-computing">II. Core Principles of Quantum Computing</a></h2>
+    <button id="nextButton"><h4>Video page</h4></button> <!-- Next page button -->
+    <br><p>1. Quantum Bits (Qubits)<br>Unlike classical computers, where bits can only be in a state of 0 or 1, the basic unit of a quantum computer is a quantum bit (qubit), which can exist in a superposition of both 0 and 1. In other words, qubits can represent multiple states simultaneously, enabling quantum computers to process various tasks in parallel, greatly enhancing computational efficiency.</p>
+    <p>2. Quantum Superposition and Quantum Entanglement<br>- Quantum Superposition: Qubits can exist in multiple states simultaneously, a phenomenon known as quantum superposition. Superposition enables quantum computers to perform parallel processing that far exceeds the capabilities of classical computers.<br>- Quantum Entanglement: When multiple qubits become entangled, their states are tightly correlated, meaning that the measurement of one qubit’s state immediately affects the other, even if they are far apart. Quantum entanglement allows for more efficient information transmission.</p>
+    <p>3. Quantum vs. Classical Computing
+        <br> <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2YQErq7Y9uPEX-GO_JpG3wq4Z5ZkR6MbahG_4DCWUKqkamtQR-m9vSrmF09seZzZ3GZg3osbOnIJCU2IBe6cHSnlcWNhMEGUO8JHoE4KwvHYDSH3NHyJ_ewKFQWTvDXp6skJGpjO43HbA3QTll1AZQqu7bcXDg_BbIpgJ2a2yrkg2VpJhC4M_ar6EhUI/s16000/quantum%20computing%20vs%20classical%20computing.jpg" alt="示例图片" width="500" height="300">
+        <br>Through superposition and entanglement, quantum computers can solve problems that classical computers cannot complete within a reasonable time frame. Classical computers rely on sequentially processing information, whereas quantum computers can handle multiple data points simultaneously.</p>
+    <br>
+    
+</section>
+
+<!-- 视频页面内容 -->
+<section id="videoPage" class="page">
+    <h2>Videos</h2>
+    <!-- 嵌入YouTube视频 -->
+    <iframe width="890" height="645" src="https://www.youtube.com/embed/JhHMJCUmq28" 
+        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+    </iframe>
+    <br><br>
+    <button id="backButton">Back homepage</button> <!-- Back button to return to main page -->
+</section>
+
+<script>
+    const nextButton = document.getElementById('nextButton');
+    const backButton = document.getElementById('backButton');
+    const mainPage = document.getElementById('mainPage');
+    const videoPage = document.getElementById('videoPage');
+
+    // 点击“下一页”按钮，切换到视频页面
+    nextButton.addEventListener('click', function() {
+        mainPage.classList.remove('active');
+        videoPage.classList.add('active');
+    });
+
+    // 点击“返回主页”按钮，切换回主页内容
+    backButton.addEventListener('click', function() {
+        videoPage.classList.remove('active');
+        mainPage.classList.add('active');
+    });
+</script>
+
+</body>
+</html>
