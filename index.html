@@ -3,76 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Computing</title>
+    <title>Zack's Portfolio</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            font-size: 20px;
-            color: #000000;  /* Set text color to black for contrast */
-            background-color: #ffd9e6;  /* Light pink background */
-            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
         }
-        h1 {
+
+        /* 封面样式 */
+        .cover {
+            background-image: url('https://i1.wp.com/blog.golftown.com/wp-content/uploads/2020/07/19-Kananaskis-Country-Golf-Course-%E2%80%93-Mt.-Kidd.jpeg?fit=1800%2C1200&ssl=1'); /* 替换成你的图片URL */
+            background-size: cover;
+            background-position: center;
+            color: white;
             text-align: center;
-            font-weight: bold;
-            font-size: 40px;
+            padding: 100px 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
-        h2 {
-            margin-top: 20px;
-            font-size: 30px;
-            font-style: italic;
+        .cover h1 {
+            font-size: 60px;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
-        button{
-            border-style: solid; 
-            border-width: 0;
-            background-color: #D3D3D3;
-            font-size:30px;
 
+        .tagline {
+            font-size: 24px;
+            color:#ff6699;
+            margin-top: 10px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
-        h4 {
+
+        /* 选项的容器样式，形成两列布局 */
+        .options-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 20px;
+            flex-wrap: wrap;
+            cursor: pointer;
             
-          
-            font-size:20px;
-            color: red;
-            background-color: #D3D3D3;  /* Light pink background */
+            
+        }
+
+        /* 左右两列 */
+        .options-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height:200px;
+            width:500px;
+            font-size: 50px;
+            
+        }
+
+        /* 按钮样式 */
+        .options button {
            
+            width:100px;
+            font-size: 70px;  /* 字体增大 */
+            color: white;  /* 白色字体 */
+            background-color: #ff6699;
+            padding: 15px 40px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
             
         }
+
+        .options button:hover {
+            background-color: #ff85a2;
+            box-shadow: 2px 2px 20px rgba(255, 102, 153, 0.8);
+        }
+
+        /* 内容部分 */
+        .content {
+            display: none;
+            padding: 50px;
+            background:pink;
+            
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 36px;
+            color: #ff6699;
+            margin-bottom: 30px;
+        }
+        h1{
+            font-size:40px;
+        }
+
         p {
-            margin: 15px 0;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
         }
-        a {
-            color: #00aaaa; /* Cyan for links */
-        }
-        .page {
-            display: none; /* Initially hide all pages */
-        }
-        .active {
-            display: block; /* Display only the active page */
-        }
-        #videoPage {
+
+        .sub-menu {
+            margin: 30px 0;
             text-align: center;
+        }
+
+        .sub-menu button {
+            text-decoration: none;
+            color: #00aaaa;
+            font-size: 24px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .sub-menu button:hover {
+            color: #ff6699;
+        }
+
+        .project-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 500px;
+        }
+
+        /* Resume 样式 */
+        .resume-content {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            font-size: 20px;
+            padding: 10px 20px;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
 
-<!-- 原始页面内容 -->
-<section id="mainPage" class="page active">
-    <h1>The History and Future of Quantum Computing<br><br>ZACK</h1><br><br>
-    <p><h2>Introduction</h2>Quantum computing is a type of computational device that operates based on the fundamental principles of quantum mechanics. Its emergence has the potential to disrupt our current understanding of computing power. Unlike classical computers, quantum computers use quantum bits (qubits) to perform calculations. These qubits can exist in multiple states simultaneously (superposition), allowing for parallel computations. As technology advances, quantum computing has evolved from theoretical concepts to practical reality, becoming a leading research frontier in computation and bringing limitless application potential. This report will explore the history, core principles, and prospects of quantum computing.</p>
+<!-- 封面部分 -->
+<section class="cover" id="main-cover">
+    <h1>Zack</h1>
+    <p class="tagline">Explore My World of Knowledge</p>
+    <div class="options-container">
+        <!-- 左边三项 -->
+        <div class="options-column">
+            <options button onclick="showSection('chemistry')">Chemistry</options button><br>
+            <options button onclick="showSection('economy')">Economy</options button><br>
+            <options button onclick="showSection('english')">English</options button>
+        </div>
+        <!-- 右边三项 -->
+        <div class="options-column">
+            <options button onclick="showSection('culture')">Comparative Culture</options button><br>
+            <options button onclick="showSection('calculus')">Calculus</options button><br>
+            <options button onclick="showSection('personal')">Personal</options button>
+        </div>
+    </div>
+</section>
+
+<!-- Chemistry 页面 -->
+<section id="chemistry" class="content">
+    <h2>Chemistry</h2>
+    <div class="sub-menu">
+        <button onclick="showSection('quantumProject')">Quantum Computing Project</button>
+    </div>
+    <br><br><br><br><br><center><button class="back-button" onclick="showSection('main-cover')">Back to Main</button></center>
+</section>
+
+<!-- Quantum Computing Project 页面 -->
+<section id="quantumProject" class="content">
+    <h2>Quantum Computing Project</h2>
+    <div class="project-content">
+        <!-- Quantum Computing Project 的文本部分 -->
+        <section id="mainPage" class="page active">
+            <h1><center><b>The History and Future of Quantum Computing</b><br>ZACK</center></h1>
+            <p><h2>Introduction</h2>Quantum computing is a type of computational device that operates based on the fundamental principles of quantum mechanics. Its emergence has the potential to disrupt our current understanding of computing power. Unlike classical computers, quantum computers use quantum bits (qubits) to perform calculations. These qubits can exist in multiple states simultaneously (superposition), allowing for parallel computations. As technology advances, quantum computing has evolved from theoretical concepts to practical reality, becoming a leading research frontier in computation and bringing limitless application potential. This report will explore the history, core principles, and prospects of quantum computing.</p>
     <br>
     <h2><a href="https://quantumpedia.uk/a-brief-history-of-quantum-computing-e0bbd05893d0">I. The History of Quantum Computing</a></h2>
     
-    <p>1. Early Theories<br>The history of quantum computing can be traced back to the early 20th century with the development of quantum mechanics. Physicists like Max Planck and Albert Einstein introduced the quantum theory, explaining the behaviour of particles and their interactions at the subatomic level. These theories laid the foundation for the later development of quantum computing.</p>
+            <p>1. Early Theories<br>The history of quantum computing can be traced back to the early 20th century with the development of quantum mechanics. Physicists like Max Planck and Albert Einstein introduced the quantum theory, explaining the behaviour of particles and their interactions at the subatomic level. These theories laid the foundation for the later development of quantum computing.</p>
     <p>2. Richard Feynman and the Proposal of Quantum Computing
        <br> <img src="https://pm1.narvii.com/6558/6a9eec9ff69e799e011f935420b4567e7543700c_hq.jpg" alt="示例图片" width="235" height="310">
         <br>The concept of quantum computing was formally proposed by American physicist Richard Feynman. In 1981, during a lecture, Feynman pointed out that classical computers are highly inefficient when simulating quantum systems. Thus he suggested designing computers based on quantum mechanics to handle such complex computational tasks. Feynman's idea became the starting point for quantum computing research.</p>
     <p>3. Peter Shor and Quantum Algorithms<br>In 1994, mathematician Peter Shor introduced a quantum algorithm known as "Shor's algorithm." This algorithm allows quantum computers to greatly accelerate the process of integer factorization, which is the basis of modern encryption systems. The proposal of Shor's algorithm marked the first step in taking quantum computing from theory to practical application.</p>
     <br>
     <h2><a href="https://www.ibm.com/topics/quantum-computing">II. Core Principles of Quantum Computing</a></h2>
-    <button id="nextButton"><h4>Video page</h4></button> <!-- Next page button -->
+    <button id="nextButton"><h4>Next: Video Page</h4></button>
     <br><p>1. Quantum Bits (Qubits)<br>Unlike classical computers, where bits can only be in a state of 0 or 1, the basic unit of a quantum computer is a quantum bit (qubit), which can exist in a superposition of both 0 and 1. In other words, qubits can represent multiple states simultaneously, enabling quantum computers to process various tasks in parallel, greatly enhancing computational efficiency.</p>
     <p>2. Quantum Superposition and Quantum Entanglement<br>- Quantum Superposition: Qubits can exist in multiple states simultaneously, a phenomenon known as quantum superposition. Superposition enables quantum computers to perform parallel processing that far exceeds the capabilities of classical computers.<br>- Quantum Entanglement: When multiple qubits become entangled, their states are tightly correlated, meaning that the measurement of one qubit’s state immediately affects the other, even if they are far apart. Quantum entanglement allows for more efficient information transmission.</p>
     <p>3. Quantum vs. Classical Computing
@@ -95,22 +239,55 @@
         <li>IBM Quantum. "The Road to Quantum Computing." IBM Research Blog, 2020.</li>
         <li>“For Very Small Problem Sizes, a Classical Computer Is Faster.” ETH Zurich, 2023.</li>
     </ul>
+             <!-- Next page button -->
+        </section>
 
+        <!-- 视频页面内容（在点击“下一页”按钮后显示） -->
+        <section id="videoPage" class="page">
+            <h2>Videos</h2>
+            <iframe width="890" height="645" src="https://www.youtube.com/embed/JhHMJCUmq28" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+            <br><br>
+            <button id="backButton">Back to Quantum Computing Project</button>
+        </section>
+
+    </div>
+    <button class="back-button" onclick="showSection('chemistry')">Back to Chemistry</button>
 </section>
 
-<!-- 视频页面内容 -->
-<section id="videoPage" class="page">
-    <h2>Videos</h2>
-    <!-- 嵌入YouTube视频 -->
-    <iframe width="890" height="645" src="https://www.youtube.com/embed/JhHMJCUmq28" 
-        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowfullscreen>
-    </iframe>
-    <br><br>
-    <button id="backButton">Back homepage</button> <!-- Back button to return to main page -->
+<!-- Personal 页面 -->
+<section id="personal" class="content">
+    <h2>Personal Resume</h2>
+    <div class="resume-content">
+        <h3>林子贤 (Zack Lin)</h3>
+        <p>Accounting and Finance is a versatile field that encompasses various areas of expertise. This discipline emphasizes the principles of financial management, analysis, and reporting, as well as the application of accounting methods in the financial sector. By studying this course, I will gain proficiency in financial reporting, auditing, and the use of financial software tools.<br>
+            In the future, I will have the skills to engage in financial analysis, management, consulting, and financial forecasting. With my strong interest in accounting and finance, I aim to deepen my knowledge and pursue a career in a related field after graduation.
+            <br>Currently, I am an Advanced senior student, attending the International Division of Canada Yantai Secondary School. My academic status has been very good, my grades have been maintained at an excellent level, especially in courses related to economic statistics have a more outstanding performance, such as math, English and other courses, the grades are around 91 points, achieved the level of excellence in the school.
+            <br>Moreover, I have accumulated a rich foundation in economics through studying economics-related courses at school. In order to improve my professionalism, I paid extra attention to the economic courses and got 96 points in the 12th grade economic theory course. In addition to this, I continued to perform well in other specialized courses such as specialized science 95 in year 12 and computer science 99 in year 11. Besides, I have learnt calculus, microeconomics and macroeconomics in my personal time. I also used my personal time to participate in the EEO European Economics Challenge and successfully advanced to the China final. I also participated in the Waterloo Math Competition in order to improve my skills in math. Through these courses, I firstly have a rich theoretical knowledge base in the field of economics and statistics, which will be very helpful in my subsequent study of economic statistics. Secondly, I have acquired some computer skills, and I believe that combining these skills with economic statistics will have very positive results. More importantly, I have developed good study habits in the process of learning. For example, I am very good at self-learning and can use the resources around me to help enrich my knowledge system. When I was studying Calculus, I used the Internet and the Group Bookstore to supplement my knowledge.
+           <br>Good time management is also one of my strengths, I can make good use of fragmented time to improve the efficiency of learning. In summary, I have confidence in my learning status, study habits and ability to learn.
+            I have a wide range of hobbies and am very good at sports such as playing football, badminton, table tennis and golf. Sports are my main way of relaxing myself and being able to release stress and exercise at the same time. In addition, I am very good at calligraphy and piano. I have many years of experience in learning piano and have obtained two Grade 10 certificates in piano from the Central Conservatory of Music and Shanghai Conservatory of Music. I also participated in the Golf China PGA Junior Championship and won the 10th place in the team. In Calligraphy, I got the Grade 8 certificate from the Chinese Calligraphers Association. These skills have also been a way for me to make more friends, and I have met many wonderful people my age as a result.
+            <br>As for the reasons for choosing to study in British universities, first of all, British universities are well-known institutions, whose academic atmosphere and educational resources deeply attract me. Secondly, my future study in the UK will allow me to get in touch with outstanding students from different cultural backgrounds.
+            <br>It will help broaden my international horizon. Third, the curriculum of British universities is very much in line with my learning goals and expectations, and fully enables students to master knowledge through the combination of theory and practice.
+            <br>In addition, I really like British history and culture, so I really want to have a chance to experience it. To sum up, I believe that studying in a British university will help me improve my personal ability in all aspects, help me achieve my personal goal of future career development and become an elite.
+            </p>
+    </div>
+    <button class="back-button" onclick="showSection('main-cover')">Back to Main</button>
 </section>
 
 <script>
+    function showSection(sectionId) {
+        // 隐藏所有部分
+        var sections = document.querySelectorAll('.content, .cover');
+        sections.forEach(function(section) {
+            section.style.display = 'none'; // 隐藏所有部分
+        });
+        // 显示所选部分
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    // 视频页面切换功能
     const nextButton = document.getElementById('nextButton');
     const backButton = document.getElementById('backButton');
     const mainPage = document.getElementById('mainPage');
@@ -118,14 +295,14 @@
 
     // 点击“下一页”按钮，切换到视频页面
     nextButton.addEventListener('click', function() {
-        mainPage.classList.remove('active');
-        videoPage.classList.add('active');
+        mainPage.style.display = 'none';
+        videoPage.style.display = 'block';
     });
 
-    // 点击“返回主页”按钮，切换回主页内容
+    // 点击“返回主页”按钮，切换回 Quantum Computing Project 页面
     backButton.addEventListener('click', function() {
-        videoPage.classList.remove('active');
-        mainPage.classList.add('active');
+        videoPage.style.display = 'none';
+        mainPage.style.display = 'block';
     });
 </script>
 
