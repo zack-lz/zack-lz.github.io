@@ -192,35 +192,19 @@
 <section id="english" class="content">
     <h2>English</h2>
     <div class="sub-menu">
-        <button onclick="showSection('Indian Horse')">Indian Horse</button>
+        <button onclick="showSection('chapter04')">Indian Horse</button>
     </div>
     <br><br><br><br><br><center><button class="back-button" onclick="showSection('main-cover')">Back to Main</button></center>
 </section>
 
 <!-- Indian Horse 页面 -->
-<section id="Indian Horse" class="content">
+<section id="chapter04" class="content">
     <h2>Indian Horse</h2>
-    <div class="project-content" id="Indian Horse-content">
-        <!-- 文档内容将通过 JavaScript 动态加载到这里 -->
+    <div class="project-content">
+        <a href="Indian Horse.pdf">Download Document</a>
     </div>
     <button class="back-button" onclick="showSection('english')">Back to English</button>
 </section>
-
-<script>
-    // 使用 fetch API 加载外部文档内容
-    function loadIndian Horse() {
-        fetch('path/to/Indian Horse.pdf')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('Indian Horse-content').innerText = data;
-            })
-            .catch(error => console.error('Error loading Indian Horse:', error));
-    }
-
-    // 当页面显示 Chapter 04 时调用加载函数
-    document.querySelector('[onclick="showSection(\'Indian Horse\')"]').addEventListener('click', loadIndian Horse);
-</script>
-
 <!-- Chemistry 页面 -->
 <section id="chemistry" class="content">
     <h2>Chemistry</h2>
