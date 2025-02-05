@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Super Mario Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        h1 {
+            color: #ff4500;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>启动 Super Mario 游戏</h1>
+    <p>点击按钮以启动 Super Mario 游戏！</p>
+    <button onclick="runGame()">启动游戏</button>
+
+    <script>
+        function runGame() {
+            fetch('https://zack-lz-github-io.onrender.com')
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                })
+                .catch(error => {
+                    alert('错误：无法启动游戏。');
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
