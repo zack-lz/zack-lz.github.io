@@ -1,452 +1,264 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zack's Portfolio</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-
-        /* 封面样式 */
-        .cover {
-            background-image: url('https://i1.wp.com/blog.golftown.com/wp-content/uploads/2020/07/19-Kananaskis-Country-Golf-Course-%E2%80%93-Mt.-Kidd.jpeg?fit=1800%2C1200&ssl=1'); /* 替换成你的图片URL */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .cover h1 {
-            font-size: 60px;
-            margin: 0;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .tagline {
-            font-size: 24px;
-            color:#ff6699;
-            margin-top: 10px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        /* 选项的容器样式，形成两列布局 */
-        .options-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 50px;
-            gap: 20px;
-            flex-wrap: wrap;
-            cursor: pointer;
-            
-            
-        }
-
-        /* 左右两列 */
-        .options-column {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height:200px;
-            width:500px;
-            font-size: 50px;
-            
-        }
-
-        /* 按钮样式 */
-        .options button {
-           
-            width:100px;
-            font-size: 70px;  /* 字体增大 */
-            color: white;  /* 白色字体 */
-            background-color: #ff6699;
-            padding: 15px 40px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            
-        }
-
-        .options button:hover {
-            background-color: #ff85a2;
-            box-shadow: 2px 2px 20px rgba(255, 102, 153, 0.8);
-        }
-
-        /* 内容部分 */
-        .content {
-            display: none;
-            padding: 50px;
-            background:pink;
-            
-        }
-
-        .content.active {
-            display: block;
-        }
-
-        h2 {
-            font-size: 36px;
-            color: #ff6699;
-            margin-bottom: 30px;
-        }
-        h1{
-            font-size:40px;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .sub-menu {
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .sub-menu button {
-            text-decoration: none;
-            color: #00aaaa;
-            font-size: 24px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
-
-        .sub-menu button:hover {
-            color: #ff6699;
-        }
-
-        .project-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        iframe {
-            border: none;
-            width: 100%;
-            height: 500px;
-        }
-
-        /* Resume 样式 */
-        .resume-content {
-            background-color: #e6f7ff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .back-button {
-            display: block;
-            margin-top: 20px;
-            font-size: 20px;
-            padding: 10px 20px;
-            color: white;
-            background-color: #333;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .back-button:hover {
-            background-color: #555;
-        }
-    </style>
-</head>
-<body>
-
-<!-- 封面部分 -->
-<section class="cover" id="main-cover">
-    <h1>Zack</h1>
-    <p class="tagline">Explore My World of Knowledge</p>
-    <div class="options-container">
-        <!-- 左边三项 -->
-        <div class="options-column">
-            <options button onclick="showSection('chemistry')">Chemistry</options button><br>
-            <options button onclick="showSection('economy')">Economy</options button><br>
-            <options button onclick="showSection('english')">English</options button>
-        </div>
-        <!-- 右边三项 -->
-        <div class="options-column">
-            <options button onclick="showSection('culture')">Comparative Culture</options button><br>
-            <options button onclick="showSection('calculus')">Calculus</options button><br>
-            <options button onclick="showSection('personal')">Personal</options button>
-        </div>
-    </div>
-</section>
-
-<!-- Calculus 页面 -->
-<section id="calculus" class="content">
-    <h2>Calculus</h2>
-    <div class="sub-menu">
-        <button onclick="showSection('pre book')">Pre12 book</button><br>
-        <button onclick="showSection('Pre12 workbook chapter04 solution')">Pre12 workbook solution</button><br>
-        <button onclick="showSection('Pre12 workbook chapter04')">Pre12 workbook chapter04</button><br>
-        <button onclick="showSection('Pre12 workbook chapter05')">Pre12 workbook chapter05</button><br>
-        <button onclick="showSection('Pre12 workbook chapter06')">Pre12 workbook chapter06</button><br>
-        <button onclick="showSection('Pre12 workbook chapter07')">Pre12 workbook chapter07</button><br>
-        <button onclick="showSection('Pre12 workbook chapter08')">Pre12 workbook chapter08</button><br>
-    </div>
-    <br><br><br><br><br><center><button class="back-button" onclick="showSection('main-cover')">Back to Main</button></center>
-</section>
-
-
-<!-- Pre12 workbook chapter04 页面 -->
-<section id="Pre12 workbook chapter04" class="content">
-    <h2>Pre12 workbook chapter04</h2>
-    <div class="project-content">
-        <a href="pre12-workbook-ch04.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('calculus')">Back to Calculus</button>
-</section>
-<!-- Pre12 book 页面 -->
-<section id="pre book" class="content">
-    <h2>Pre12 book</h2>
-    <div class="project-content">
-        <a href="pre12 book.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('calculus')">Back to Calculus</button>
-</section>
-<!-- Pre12 workbook chapter04 solution 页面 -->
-<section id="Pre12 workbook chapter04 solution" class="content">
-    <h2>Pre12 workbook solution</h2>
-    <div class="project-content">
-        <a href="pre12-workbook-ch04-solution.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('calculus')">Back to Calculus</button>
-</section>
-<!-- Pre12 chap05 页面 -->
-<section id="Pre12 workbook chapter05" class="content">
-    <h2>Pre12 workbook chapter05</h2>
-    <div class="project-content">
-        <a href="p12-chap05.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('calculus')">Back to Calculus</button>
-</section>
-<!-- Pre12 chap06 页面 -->
-    <section id="Pre12 workbook chapter06" class="content">
-        <h2>Pre12 workbook chapter06</h2>
-        <div class="project-content">
-            <a href="p12-chap06.pdf">Download Document</a>
-        </div>
-    <button class="back-button" onclick="showSection('calculus')">Back to Calculus</button>
-</section>
-<!-- Pre12 chap07 页面 -->
-<section id="Pre12 workbook chapter07" class="content">
-    <h2>Pre12 workbook chapter07</h2>
-    <div class="project-content">
-        <a href="p12-chap07.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('calculus')">Back to Calculus</button>
-</section>
-<!-- Pre12 chap08 页面 -->
-<section id="Pre12 workbook chapter08" class="content">
-    <h2>Pre12 workbook chapter08</h2>
-    <div class="project-content">
-        <a href="p12-chap08.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('calculus')">Back to Calculus</button>
-</section>
-
-<!-- English 页面 -->
-<section id="english" class="content">
-    <h2>English</h2>
-    <div class="sub-menu">
-        <button onclick="showSection('Indian Horse')">Indian Horse</button>
-    </div>
-    <br><br><br><br><br><center><button class="back-button" onclick="showSection('main-cover')">Back to Main</button></center>
-</section>
-
-<!-- Indian Horse 页面 -->
-<section id="Indian Horse" class="content">
-    <h2>Indian Horse</h2>
-    <div class="project-content">
-        <a href="Indian Horse.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('english')">Back to English</button>
-</section>
-
-<!-- Comparative Culture 页面 -->
-<section id="culture" class="content">
-    <h2>Comparative Culture</h2>
-    <div class="sub-menu">
-        <button onclick="showSection('Chapter01')">Chapter01</button><br>
-        <button onclick="showSection('Chapter02')">Chapter02</button><br>
-        <button onclick="showSection('Chapter04')">Chapter04</button><br>
-        <button onclick="showSection('Chapter05')">Chapter05</button><br>
-    </div>
-    <br><br><br><br><br><center><button class="back-button" onclick="showSection('main-cover')">Back to Main</button></center>
-</section>
-
-<!-- Chapter01 页面 -->
-<section id="Chapter01" class="content">
-    <h2>Chapter01</h2>
-    <div class="project-content">
-        <a href="chap01 2.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('culture')">Back to Comparative Culture</button>
-</section>
-
-<!-- Chapter02 页面 -->
-<section id="Chapter02" class="content">
-    <h2>Chapter02</h2>
-    <div class="project-content">
-        <a href="chap02.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('culture')">Back to Comparative Culture</button>
-</section>
-
-<!-- Chapter04 页面 -->
-<section id="Chapter04" class="content">
-    <h2>Chapter04</h2>
-    <div class="project-content">
-        <a href="chapter04 2.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('culture')">Back to Comparative Culture</button>
-</section>
-
-<!-- Chapter05 页面 -->
-<section id="Chapter05" class="content">
-    <h2>Chapter05</h2>
-    <div class="project-content">
-        <a href="chap05.pdf">Download Document</a>
-    </div>
-    <button class="back-button" onclick="showSection('culture')">Back to Comparative Culture</button>
-</section>
-
-<!-- Chemistry 页面 -->
-<section id="chemistry" class="content">
-    <h2>Chemistry</h2>
-    <div class="sub-menu">
-        <button onclick="showSection('quantumProject')">Quantum Computing Project</button>
-    </div>
-    <br><br><br><br><br><center><button class="back-button" onclick="showSection('main-cover')">Back to Main</button></center>
-</section>
-
-<!-- Quantum Computing Project 页面 -->
-<section id="quantumProject" class="content">
-    <h2>Quantum Computing Project</h2>
-    <div class="project-content">
-        <button class="back-button" onclick="showSection('chemistry')">Back to Chemistry</button>
-        <!-- Quantum Computing Project 的文本部分 -->
-        <section id="mainPage" class="page active">
-            <h1><center><b>The History and Future of Quantum Computing</b><br>ZACK</center></h1>
-            <p><h2>Introduction</h2>Quantum computing is a type of computational device that operates based on the fundamental principles of quantum mechanics. Its emergence has the potential to disrupt our current understanding of computing power. Unlike classical computers, quantum computers use quantum bits (qubits) to perform calculations. These qubits can exist in multiple states simultaneously (superposition), allowing for parallel computations. As technology advances, quantum computing has evolved from theoretical concepts to practical reality, becoming a leading research frontier in computation and bringing limitless application potential. This report will explore the history, core principles, and prospects of quantum computing.</p>
-    <br>
-    <h2><a href="https://quantumpedia.uk/a-brief-history-of-quantum-computing-e0bbd05893d0">I. The History of Quantum Computing</a></h2>
-    
-            <p>1. Early Theories<br>The history of quantum computing can be traced back to the early 20th century with the development of quantum mechanics. Physicists like Max Planck and Albert Einstein introduced the quantum theory, explaining the behaviour of particles and their interactions at the subatomic level. These theories laid the foundation for the later development of quantum computing.</p>
-    <p>2. Richard Feynman and the Proposal of Quantum Computing
-       <br> <img src="https://pm1.narvii.com/6558/6a9eec9ff69e799e011f935420b4567e7543700c_hq.jpg" alt="示例图片" width="235" height="310">
-        <br>The concept of quantum computing was formally proposed by American physicist Richard Feynman. In 1981, during a lecture, Feynman pointed out that classical computers are highly inefficient when simulating quantum systems. Thus he suggested designing computers based on quantum mechanics to handle such complex computational tasks. Feynman's idea became the starting point for quantum computing research.</p>
-    <p>3. Peter Shor and Quantum Algorithms<br>In 1994, mathematician Peter Shor introduced a quantum algorithm known as "Shor's algorithm." This algorithm allows quantum computers to greatly accelerate the process of integer factorization, which is the basis of modern encryption systems. The proposal of Shor's algorithm marked the first step in taking quantum computing from theory to practical application.</p>
-    <br>
-    <h2><a href="https://www.ibm.com/topics/quantum-computing">II. Core Principles of Quantum Computing</a></h2>
-    <button id="nextButton"><h4>Next: Video Page</h4></button>
-    <br><p>1. Quantum Bits (Qubits)<br>Unlike classical computers, where bits can only be in a state of 0 or 1, the basic unit of a quantum computer is a quantum bit (qubit), which can exist in a superposition of both 0 and 1. In other words, qubits can represent multiple states simultaneously, enabling quantum computers to process various tasks in parallel, greatly enhancing computational efficiency.</p>
-    <p>2. Quantum Superposition and Quantum Entanglement<br>- Quantum Superposition: Qubits can exist in multiple states simultaneously, a phenomenon known as quantum superposition. Superposition enables quantum computers to perform parallel processing that far exceeds the capabilities of classical computers.<br>- Quantum Entanglement: When multiple qubits become entangled, their states are tightly correlated, meaning that the measurement of one qubit’s state immediately affects the other, even if they are far apart. Quantum entanglement allows for more efficient information transmission.</p>
-    <p>3. Quantum vs. Classical Computing
-        <br> <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2YQErq7Y9uPEX-GO_JpG3wq4Z5ZkR6MbahG_4DCWUKqkamtQR-m9vSrmF09seZzZ3GZg3osbOnIJCU2IBe6cHSnlcWNhMEGUO8JHoE4KwvHYDSH3NHyJ_ewKFQWTvDXp6skJGpjO43HbA3QTll1AZQqu7bcXDg_BbIpgJ2a2yrkg2VpJhC4M_ar6EhUI/s16000/quantum%20computing%20vs%20classical%20computing.jpg" alt="示例图片" width="500" height="300">
-        <br>Through superposition and entanglement, quantum computers can solve problems that classical computers cannot complete within a reasonable time frame. Classical computers rely on sequentially processing information, whereas quantum computers can handle multiple data points simultaneously.For example, in tasks such as breaking encryption algorithms or simulating complex molecular structures, quantum computers offer far more potential than classical machines.</p>
-    <br>
-    <h2>III. Recent Research in Quantum Computing</h2>
-    <p><a href="https://www.nasa.gov/technology/computing/google-and-nasa-achieve-quantum-supremacy/">1. Google's Quantum Supremacy</a><br>In 2019, Google announced that its quantum computer, Sycamore, had achieved "quantum supremacy," meaning that a quantum computer was able to complete a task that a classical computer could not solve within a reasonable time frame. In the experiment, Sycamore completed a calculation in 200 seconds that would take a classical computer 10,000 years. This breakthrough demonstrated quantum computing’s powerful ability to tackle certain specific problems.</p>
-    <p><a href="https://en.wikipedia.org/wiki/IBM_Quantum_Platform">2. IBM's Quantum Computing Development</a>: IBM is another major player in the field of quantum computing. The company has launched the quantum computing service "IBM Quantum," which allows users to access quantum computing resources via the cloud. IBM is working on commercializing quantum computers, aiming to apply this technology to a wide range of fields such as finance, material science, and drug development.</p>
-    <p>3. Future Potential and Challenges<br>- Encryption and Security: Quantum computers can break existing encryption systems, leading to the need for redesigned quantum-resistant algorithms to address future security threats.
-        <br>- Drug Development and Material Science: Quantum computing can simulate complex molecular behaviour, helping scientists accelerate drug development and discover new materials.
-        <br>- Technical Challenges: Despite its enormous potential, quantum computing faces many challenges, such as how to stabilize qubit states and reduce noise and quantum errors.
-        </p>
-    <br>
-    <h2>References</h2>
-    <ul>
-        <li>Feynman, Richard. "Simulating Physics with Computers." International Journal of Theoretical Physics, 1982.</li>
-        <li>Shor, Peter. "Algorithms for Quantum Computation: Discrete Logarithms and Factoring." Proceedings of the 35th Annual Symposium on Foundations of Computer Science, 1994.</li>
-        <li>Google AI Quantum. "Quantum Supremacy Using a Programmable Superconducting Processor." Nature, 2019.</li>
-        <li>IBM Quantum. "The Road to Quantum Computing." IBM Research Blog, 2020.</li>
-        <li>“For Very Small Problem Sizes, a Classical Computer Is Faster.” ETH Zurich, 2023.</li>
-    </ul>
-             <!-- Next page button -->
-        </section>
-
-        <!-- 视频页面内容（在点击“下一页”按钮后显示） -->
-        <section id="videoPage" class="page">
-            <h2>Videos</h2>
-            <iframe width="890" height="645" src="https://www.youtube.com/embed/JhHMJCUmq28" 
-                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-            <br><br>
-            <button id="backButton">Back to Quantum Computing Project</button>
-        </section>
-
-    </div>
-    <button class="back-button" onclick="showSection('chemistry')">Back to Chemistry</button>
-</section>
-
-<!-- Personal 页面 -->
-<section id="personal" class="content">
-    <h2>Personal Resume</h2>
-    <div class="resume-content">
-        <h3>林子贤 (Zack Lin)</h3>
-        <p>
-            Accounting and Finance is not just a career I am interested in; it is a field I have been exposed to from a young age. Growing up in a family that emphasized financial planning and management, I saw how important it was to make informed financial decisions, whether it was discussing investments or managing household budgets. These early experiences sparked my curiosity about how finance operates on a broader scale. This interest was formalized during high school when I met my teacher, Chang Xiaoping, who had a background in corporate finance. His lessons on financial systems and analysis further deepened my determination to pursue accounting and finance as a professional path.
-            <br>In my senior year at Jonathan Academy in Canada, I strengthened my academic foundation, excelling in courses related to accounting and finance. A key project involved simulated stock trading, which enhanced my understanding of financial markets, investment decisions, and risk management. Jonathan Academy’s emphasis on independent learning and critical thinking has also sharpened my problem-solving skills and improved my time management—both essential skills for success in the financial sector.
-            <br>Beyond formal education, I took Advanced Placement (AP) courses in Calculus BC, Microeconomics, and Macroeconomics. AP Calculus BC refined my problem-solving and logical thinking, crucial for financial analysis. My studies in Microeconomics and Macroeconomics allowed me to better understand how markets function, how resources are allocated, and how policy impacts businesses. Additionally, my participation in the European Economics Olympiad, where I earned three awards, and the Waterloo Math Competition, helped me develop a strong analytical mindset that is essential in accounting and finance.
-            <br>My extracurricular activities have also played an important role in shaping my skills. I have a wide range of hobbies, excelling in sports like football, badminton, table tennis, and golf. These activities help me manage stress and stay active, which is crucial for maintaining a balanced lifestyle, especially in demanding fields like finance. In particular, my participation in the Golf China PGA Junior Championship, where I placed 10th in the team event, taught me the importance of focus and resilience—traits that are valuable in financial decision-making.
-            <br>In addition to sports, I am passionate about calligraphy and piano, earning Grade 10 certificates in piano from both the China Central Conservatory of Music and the China Shanghai Conservatory of Music. These hobbies have fostered patience, discipline, and attention to detail, all of which are essential for success in accounting and finance. My calligraphy practice, for example, has taught me to maintain focus over long periods, an ability I believe will help me in complex financial analysis. These diverse experiences not only helped me build important skills but also expanded my social circle and allowed me to connect with people from different backgrounds.
-            <br>I have also worked hard to ensure my academic skills are complemented by strong communication abilities. I achieved an overall score of 7.0 on the IELTS exam, which has given me the confidence to adapt to the academic environment in the UK. My English skills will help me participate in discussions, understand course content, and communicate effectively with professors and peers. Additionally, the UK’s diverse culture and rich history have always intrigued me, and I am excited about the opportunity to immerse myself in such an environment while studying.
-            <br>The UK’s prestigious universities and their strong focus on accounting and finance make it an ideal destination for my studies. The courses offered in the UK not only provide a solid theoretical foundation but also emphasize practical learning, closely linked to industry. I am particularly drawn to the opportunities for internships and real-world projects, which will allow me to apply the knowledge I gain in the classroom. My goal is to focus on financial analysis, management consulting, and financial forecasting, preparing for a career in fields such as investment banking or financial consulting.
-            <br>Ultimately, I aspire to take on leadership roles in finance, where I can contribute to helping businesses grow through strategic financial management. I am confident that studying in the UK will provide me with the skills and experience necessary to achieve my career goals and contribute meaningfully to the financial sector.
-               
-
-        </p>
-    </div>
-    <button class="back-button" onclick="showSection('main-cover')">Back to Main</button>
-</section>
-
-<script>
-    function showSection(sectionId) {
-        // 隐藏所有部分
-        var sections = document.querySelectorAll('.content, .cover');
-        sections.forEach(function(section) {
-            section.style.display = 'none'; // 隐藏所有部分
-        });
-        // 显示所选部分
-        document.getElementById(sectionId).style.display = 'block';
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Virtual Business Card Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #a1c4fd, #c2e9fb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    // 视频页面切换功能
-    const nextButton = document.getElementById('nextButton');
-    const backButton = document.getElementById('backButton');
-    const mainPage = document.getElementById('mainPage');
-    const videoPage = document.getElementById('videoPage');
+    h1 {
+      margin: 20px 0;
+      color: #333;
+      font-size: 2rem;
+    }
 
-    // 点击“下一页”按钮，切换到视频页面
-    nextButton.addEventListener('click', function() {
-        mainPage.style.display = 'none';
-        videoPage.style.display = 'block';
+    .container {
+      max-width: 900px;
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .card-preview {
+      margin-top: 20px;
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 250px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .card-preview h2, .card-preview p {
+      margin: 5px 0;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+
+    .actions button {
+      margin-right: 10px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .actions button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Advanced Virtual Business Card Generator</h1>
+  <div class="container">
+    <!-- Input Form -->
+    <div class="form-group">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" oninput="updateCard()">
+    </div>
+    <div class="form-group">
+      <label for="job-title">Job Title:</label>
+      <input type="text" id="job-title" placeholder="Enter your job title" oninput="updateCard()">
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" placeholder="Enter your email" oninput="updateCard()">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" oninput="updateCard()">
+    </div>
+    <div class="form-group">
+      <label for="template">Choose Template:</label>
+      <select id="template" onchange="updateTemplate()">
+        <option value="1">Template 1 - Classic</option>
+        <option value="2">Template 2 - Creative</option>
+        <option value="3">Template 3 - Modern</option>
+        <option value="4">Template 4 - Minimalist</option>
+        <option value="5">Template 5 - Vibrant</option>
+        <option value="6">Template 6 - Professional</option>
+        <option value="7">Template 7 - Nature</option>
+        <option value="8">Template 8 - Luxury</option>
+        <option value="9">Template 9 - Artistic</option>
+        <option value="10">Template 10 - Futuristic</option>
+      </select>
+    </div>
+
+    <!-- Business Card Preview -->
+    <div id="card" class="card-preview" style="background-image: url('https://via.placeholder.com/400x250');">
+      <h2 id="card-name">Your Name</h2>
+      <p id="card-title">Your Job Title</p>
+      <p id="card-email">Your Email</p>
+      <p id="card-phone">Your Phone</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button onclick="downloadPDF()">Download as PDF</button>
+      <button onclick="downloadImage()">Download as Image</button>
+    </div>
+  </div>
+
+  <script>
+    const backgrounds = [
+      'https://bpic.588ku.com/back_pic/06/19/07/796343d64bb1d3f.jpg',
+      'https://thumbs.dreamstime.com/b/%E5%88%9B%E9%80%A0%E6%80%A7%E7%9A%84%E6%8A%BD%E8%B1%A1%E6%89%8B%E7%94%BB%E8%83%8C%E6%99%AF%EF%BC%8C%E5%A2%99%E7%BA%B8%EF%BC%8C%E7%BA%B9%E7%90%86%EF%BC%8C-c-121717803.jpg',
+      'https://bpic.588ku.com/back_origin_pic/23/07/01/4fde26b737c048841d7f1afedfc8abb7.png',
+      'https://img.pikbest.com/background/20220119/minimalist-blue-business-card-design-set_6218607.jpg!bw700',
+      'https://t4.ftcdn.net/jpg/03/97/65/77/360_F_397657763_DFZJP0pxGvkYp1OyYM2FvigWZvWerBcv.jpg',
+      'https://www.shutterstock.com/image-vector/abstract-black-gold-lines-luxury-600nw-2019889451.jpg',
+      'https://static.vecteezy.com/system/resources/previews/000/106/382/non_2x/vector-eco-friendly-business-card.jpg',
+      'https://th.bing.com/th/id/R.c839805604675bf984b86795ffa66af5?rik=mWcNI0VXgYxSpg&riu=http%3a%2f%2fpic.616pic.com%2fbg_w1180%2f00%2f05%2f19%2fAkgYOMR424.jpg!%2ffw%2f1120&ehk=jPFjIaU21XZe5SzXWUEDXXegEorcuBJW8rGO8aAdA%2bU%3d&risl=&pid=ImgRaw&r=0',
+      'https://thumbs.dreamstime.com/b/%E8%89%BA%E6%9C%AF%E6%80%A7%E7%9A%84%E8%83%8C%E6%99%AF-37148458.jpg',
+      'https://static.vecteezy.com/system/resources/previews/027/498/471/non_2x/business-card-futuristic-background-for-technology-and-finance-concept-and-education-for-future-vector.jpg',
+    ];
+
+    function updateCard() {
+      const name = document.getElementById('name').value || 'Your Name';
+      const title = document.getElementById('job-title').value || 'Your Job Title';
+      const email = document.getElementById('email').value || 'Your Email';
+      const phone = document.getElementById('phone').value || 'Your Phone';
+
+      document.getElementById('card-name').innerText = name;
+      document.getElementById('card-title').innerText = title;
+      document.getElementById('card-email').innerText = email;
+      document.getElementById('card-phone').innerText = phone;
+    }
+
+    function updateTemplate() {
+    const template = parseInt(document.getElementById('template').value);
+    const card = document.getElementById('card');
+  
+    const imgURL = backgrounds[template - 1];
+    const img = new Image();
+    img.src = imgURL;
+
+    img.onload = () => {
+      card.style.backgroundImage = `url(${imgURL})`;
+    };
+
+    img.onerror = () => {
+      // 如果图片加载失败，使用占位图片
+      card.style.backgroundImage = "url('https://via.placeholder.com/400x250?text=Template+Image+Not+Found')";
+      alert('Failed to load background image. Using placeholder instead.');
+    };
+
+    // 改变字体颜色为黑色的模板
+    if ([1, 2, 3, 5, 7, 8, 9].includes(template)) {
+      card.style.color = '#000';  // 黑色字体
+    } else {
+      card.style.color = '#fff';  // 白色字体
+    }
+
+    if ([7, 8, 9].includes(template)) {
+      card.style.justifyContent = 'flex-start';
+      card.style.alignItems = 'flex-start';
+      card.style.textAlign = 'left';
+      card.style.padding = '20px';
+    } else {
+      card.style.justifyContent = 'flex-end';
+      card.style.alignItems = 'flex-start';
+      card.style.textAlign = 'left';
+      card.style.padding = '20px';
+    }
+  }
+  
+
+
+
+async function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+  const card = document.getElementById('card');
+
+  // 等待背景图片加载
+  await new Promise((resolve) => setTimeout(resolve, 100)); // 短暂延迟确保样式已应用
+
+  try {
+    const canvas = await html2canvas(card, {
+      scale: 2,
+      useCORS: true, // 确保跨域资源被正确加载
+      allowTaint: false, // 禁止 tainting 跨域资源
     });
+    const imgData = canvas.toDataURL('image/png');
+    const imgWidth = 190;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+    pdf.save('business_card.pdf');
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    alert('Failed to generate PDF. Please try again.');
+  }
+}
 
-    // 点击“返回主页”按钮，切换回 Quantum Computing Project 页面
-    backButton.addEventListener('click', function() {
-        videoPage.style.display = 'none';
-        mainPage.style.display = 'block';
+async function downloadImage() {
+  const card = document.getElementById('card');
+
+  // 等待背景图片加载
+  await new Promise((resolve) => setTimeout(resolve, 100)); // 短暂延迟确保样式已应用
+
+  try {
+    const canvas = await html2canvas(card, {
+      scale: 2,
+      useCORS: true, // 确保跨域资源被正确加载
+      allowTaint: false, // 禁止 tainting 跨域资源
     });
-</script>
+    const link = document.createElement('a');
+    link.download = 'business_card.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch (error) {
+    console.error('Error generating Image:', error);
+    alert('Failed to generate Image. Please try again.');
+  }
+}
 
+
+  </script>
 </body>
 </html>
