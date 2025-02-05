@@ -1,7 +1,6 @@
 import pygame
 import os
 import sys
-import time
 
 # Initialize pygame
 pygame.init()
@@ -107,19 +106,12 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.topleft = (x, y)
         self.starting_position = (x, y)  # Store initial position
         self.speed = speed
-        self.initial_speed = speed  # Store initial speed for reset
-        self.creation_time = time.time()  # Record when the enemy is created
 
     def reset_position(self):
         self.rect.topleft = self.starting_position
-        self.speed = self.initial_speed  # Reset speed to initial value
-        self.creation_time = time.time()  # Reset the creation time
+        self.speed = abs(self.speed)  # Reset speed direction to positive
 
     def update(self):
-        # Speed up over time
-        elapsed_time = time.time() - self.creation_time
-        self.speed = self.initial_speed + elapsed_time // 5  # Speed increases every 5 seconds
-
         self.rect.x += self.speed
         if self.rect.left < 0 or self.rect.right > WIDTH:
             self.speed = -self.speed  # Reverse direction
