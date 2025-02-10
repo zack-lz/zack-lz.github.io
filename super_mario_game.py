@@ -11,11 +11,18 @@ WIDTH, HEIGHT = 800, 400
 FPS = 60
 GRAVITY = 0.5
 PLAYER_SPEED = 5
+PINK = (255, 182, 193)
+WHITE = (255, 255, 255)
+BUTTON_COLOR = (0, 150, 200)
+BUTTON_HOVER_COLOR = (0, 200, 255)
+BUTTON_TEXT_COLOR = (255, 255, 255)
 JUMP_HEIGHT = -15  # 调高跳跃高度
 
 # Set up display
+# Set up display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Super Mario Game")
+pygame.display.set_caption("Jumpio")
+
 
 # Load assets
 def load_image(name):
@@ -26,9 +33,56 @@ def load_image(name):
         print(f"Error: {path} not found.")
         sys.exit()
 
+jumpio_logo = load_image("Jumpio.png")
 # Load sounds
 background_music = os.path.join("assets", "background.mp3")
 jump_sound = pygame.mixer.Sound(os.path.join("assets", "jump.wav"))
+font = pygame.font.Font(None, 48)
+small_font = pygame.font.Font(None, 36)
+# Button function
+def draw_button(text, x, y, width, height, hover=False):
+    button_color = BUTTON_HOVER_COLOR if hover else BUTTON_COLOR
+    pygame.draw.rect(screen, button_color, (x, y, width, height), border_radius=12)
+    button_text = small_font.render(text, True, BUTTON_TEXT_COLOR)
+    text_rect = button_text.get_rect(center=(x + width // 2, y + height // 2))
+    screen.blit(button_text, text_rect)
+
+def start_screen():
+    running = True
+    button_x, button_y = WIDTH // 2 - 100, HEIGHT // 2 + 50
+    button_y_offset = 20 
+    button_width, button_height = 200, 50
+
+    while running:
+        screen.fill(PINK)
+        
+        # Draw logo
+        logo_rect = jumpio_logo.get_rect(center=(WIDTH // 2 , HEIGHT // 2 - 50 ))
+        screen.blit(jumpio_logo, logo_rect.topleft)
+
+        
+        # Get mouse position and check hover
+        button_y = logo_rect.bottom + button_y_offset 
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        is_hovering = button_x <= mouse_x <= button_x + button_width and button_y <= mouse_y <= button_y + button_height
+
+        # Draw start button
+        draw_button("Start Game", button_x, button_y, button_width, button_height, hover=is_hovering)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN and is_hovering:
+                running = False  # Exit start screen
+
+        pygame.display.flip()
+
+# Start screen logic before main game loop
+start_screen()
+
+# Main game logic (this would be your existing game loop here)
+print("Game Started!")  # Replace this with your game's main loop logic
 
 # Play background music
 pygame.mixer.music.load(background_music)
@@ -167,14 +221,20 @@ def game_over_screen():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                 waiting = False  # Exit the game over screen
 
-# Function to check if the player jumps over the enemy
+# 改进后的函数：检测玩家是否跳跃过敌人
 def check_jump_over(enemy):
     global score
-    if player.rect.bottom < enemy.rect.top and player.rect.right > enemy.rect.right and player.rect.left < enemy.rect.right and not hasattr(enemy, 'scored'):
-        score += 1  # Increment score
-        enemy.scored = True  # Mark enemy as scored to prevent double counting
+    # 若玩家处于敌人上方（即玩家的底部高于敌人的顶部）
+    if player.rect.bottom < enemy.rect.top:
+        # 当玩家的水平中心已经超过敌人的右侧，并且该敌人此次跳跃还未计分，则加一分
+        if player.rect.centerx > enemy.rect.right and not getattr(enemy, 'scored', False):
+            score += 1
+            enemy.scored = True
+    else:
+        # 当玩家不在敌人上方时，重置计分标记，使后续再次跳跃时能重新计分
+        enemy.scored = False
 
-# Reset scoring status for all enemies
+# 重置所有敌人的计分标记（例如在游戏结束后重置）
 def reset_enemy_scoring():
     for enemy in enemies:
         if hasattr(enemy, 'scored'):
@@ -197,7 +257,7 @@ while running:
     # Update all sprites
     all_sprites.update()
 
-    # Check for collisions with enemies
+    # 检测与敌人的碰撞（碰到敌人即游戏结束）
     if pygame.sprite.spritecollideany(player, enemies):
         game_over_screen()  # Show game over screen
         player.rect.topleft = (50, HEIGHT - 150)  # Reset player position
@@ -206,7 +266,7 @@ while running:
         for enemy in enemies:
             enemy.reset_position()  # Reset enemy positions
 
-    # Check if player jumps over enemies
+    # 检测是否跳跃过敌人
     for enemy in enemies:
         check_jump_over(enemy)
 
