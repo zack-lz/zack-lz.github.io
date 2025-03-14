@@ -2,7 +2,10 @@ import pygame
 import os
 import sys
 
-# Initialize pygame
+# 使用虚拟音频设备
+os.environ['SDL_AUDIODRIVER'] = 'dummy'
+
+# 初始化 pygame
 pygame.init()
 pygame.mixer.init()  # Initialize sound system
 
