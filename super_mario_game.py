@@ -155,7 +155,7 @@ class Block(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, x, y, image, speed):
         super().__init__()
-        self.image = pygame.transform.scale(image, (80, 80))  # 改成更矮的长方形
+        self.image = pygame.transform.scale(image, (90, 90))  # 改成更矮的长方形
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.starting_position = (x, y)  # Store initial position
