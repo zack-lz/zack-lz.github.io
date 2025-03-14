@@ -1,6 +1,7 @@
 import pygame
 import os
 import sys
+from flask import Flask, render_template
 
 # 使用虚拟音频设备
 os.environ['SDL_AUDIODRIVER'] = 'dummy'
@@ -8,6 +9,37 @@ os.environ['SDL_AUDIODRIVER'] = 'dummy'
 # 初始化 pygame
 pygame.init()
 pygame.mixer.init()  # Initialize sound system
+# 创建 Flask 应用
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# 启动游戏的主循环（将游戏逻辑集成在 Flask 服务中）
+def game_loop():
+    screen = pygame.display.set_mode((800, 600))
+    pygame.display.set_caption("My Game")
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        screen.fill((0, 0, 0))
+        pygame.draw.rect(screen, (255, 0, 0), (50, 50, 100, 100))
+        pygame.display.flip()
+
+    pygame.quit()
+
+# 在 Flask 启动时，自动运行游戏主循环
+if __name__ == '__main__':
+    from threading import Thread
+    # 用线程运行 pygame 游戏
+    Thread(target=game_loop).start()
+    # 启动 Flask 服务（绑定 Render 要求的端口）
+    app.run(host='0.0.0.0', port=8080)
 
 # Constants
 WIDTH, HEIGHT = 800, 400
