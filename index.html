@@ -84,6 +84,7 @@ let road;                       // the list of road segments
 let time;                       // time left before game over
 let lastUpdate = 0;             // time of last update
 let timeBuffer = 0;             // frame rate adjustment
+let showInstructions = true;
 
 function StartLevel()
 { 
@@ -198,6 +199,7 @@ function Update()
     // update player - controls and physics
     /////////////////////////////////////////////////////////////////////////////////////
     
+
     // get player road segment
     const playerRoadSegment = playerPos.z/roadSegmentLength|0;         // current player road segment 
     const playerRoadSegmentPercent = playerPos.z/roadSegmentLength%1;  // how far player is along current segment
@@ -442,6 +444,32 @@ function Update()
     {
         context.textAlign = 'center';        // set center alignment for title
         DrawText('HUE JUMPER', c.width/2);   // draw title text
+    }
+    if (showInstructions) {
+        context.save();  // 保存当前状态
+        context.fillStyle = 'white';
+        context.textAlign = 'center';
+        context.font = '20px Arial';
+
+        const instructions = [
+            "## Controls",
+            "* Mouse = Steer",
+            "* Click = Brake",
+            "* Double Click = Jump",
+            "* R = Restart",
+            "* 1 = Screenshot"
+        ];
+
+        const startY = c.height / 2 - instructions.length * 15;
+        instructions.forEach((line, index) => {
+            context.fillText(line, c.width / 2, startY + index * 30);
+        });
+        context.restore();
+
+        // 当检测到玩家点击后隐藏指令
+        if (mouseWasPressed) {
+            showInstructions = false;
+        }
     }
     
     requestAnimationFrame(Update);           // kick off next frame
